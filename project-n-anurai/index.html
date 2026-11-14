@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private N Anurai | Fierox Foundry</title>
+    <meta name="description" content="Portfolio of Fierox Foundry. Specialised in custom Ball Jointed Dolls (BJD), 3D printing and CG.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root {
+            --bg-color: #101010;
+            --card-bg: #1a1a1a;
+            --text-color: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --accent-color: #d4af37;
+            --border-color: #2a2a2a;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigatiebalk */
+        nav {
+            padding: 1.5rem 2rem;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            position: relative;
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            /* Button styling die lijkt op de onderste knop */
+            color: var(--text-color);
+            background-color: var(--bg-color); /* Maakt hem net iets donkerder dan de balk zelf */
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* Zorgt dat de nieuwe knop op mobiel netjes in het midden staat */
+        @media (max-width: 600px) {
+            .back-btn {
+                position: static;
+                display: inline-block;
+                transform: none;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .back-btn:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            .back-btn {
+                position: static;
+                display: block;
+                transform: none;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Content sectie */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .project-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Foto's onder elkaar - Nu met vaste verhouding en klik-effect */
+        .photo-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            max-width: 400px; /* Voorkomt dat de foto's op de pagina gigantisch worden */
+            margin: 0 auto;   /* Centreert de hele fotokolom netjes in het midden */
+        }
+
+        .photo-stack img {
+            width: 100%;
+            aspect-ratio: 4 / 5; /* Aangepast naar 4/5 (verticale Instagram standaard) */
+            object-fit: cover; 
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: #222;
+            cursor: zoom-in; 
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Zweef-effect om te laten zien dat ze klikbaar zijn */
+        .photo-stack img:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-color);
+        }
+
+        .photo-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        /* DE LIGHTBOX (Het beeldvullende donkere scherm) */
+        #lightbox {
+            display: none; /* Standaard onzichtbaar */
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 1);
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out; /* Muis wordt een 'uitzoom' icoon */
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain; /* Zorgt dat de originele foto er altijd in z'n geheel oppast */
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background-color: var(--card-bg);
+        }
+
+        /* Knop onderaan de pagina */
+        .bottom-nav {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .bottom-back-btn {
+            display: inline-block;
+            color: var(--text-color);
+            background-color: var(--card-bg);
+            padding: 12px 24px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .bottom-back-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="back-btn">&larr; Back</a>
+        <h1>Fierox Foundry</h1>
+    </nav>
+
+    <main class="container">
+        <header class="project-header">
+            <h2>Private N. Anurai</h2>
+        </header>
+
+        <section class="photo-stack">
+            <!-- Foto 1 -->
+            <div>
+                <img src="foto1.jpg" alt="Nari 'ite Anurai or Private N Anurai?">
+                <p class="photo-caption">What side are you on?</p>
+            </div>
+
+            <!-- Foto 2 -->
+            <div>
+                <img src="foto2.jpg" alt="Private N Anurai">
+                <p class="photo-caption">And did I pick the right one?</p>
+            </div>
+
+            <!-- Foto 3 -->
+            <div>
+                <img src="foto3.jpg" alt="Private N Anurai out of the shower">
+                <p class="photo-caption">"Saddle up, people. Moving out in five."</p>
+            </div>
+
+            <!-- Foto 4 -->
+            <div>
+                <img src="foto4.jpg" alt="Private N Anurai getting dressed">
+            </div>
+
+            <!-- Foto 5 -->
+            <div>
+                <img src="foto5.jpg" alt="Private N Anurai getting dressed">
+            </div>
+
+            <!-- Foto 6 -->
+            <div>
+                <img src="foto6.jpg" alt="Private N Anurai getting dressed">
+            </div>
+
+            <!-- Foto 7 -->
+            <div>
+                <img src="foto7.jpg" alt="Private N Anurai getting dressed">
+            </div>
+
+            <!-- Foto 8 -->
+            <div>
+                <img src="foto8.jpg" alt="Private N Anurai getting dressed">
+            </div>
+
+            <!-- Foto 9 -->
+            <div>
+                <img src="foto9.jpg" alt="Private N Anurai getting dressed">
+            </div>
+
+            <!-- Foto 10 -->
+            <div>
+                <img src="foto10.jpg" alt="Private N Anurai getting dressed">
+            </div>
+
+            <!-- Foto 11 -->
+            <div>
+                <img src="foto11.jpg" alt="Private N Anurai getting dressed">
+            </div>
+
+            <!-- Foto 12 -->
+            <div>
+                <img src="foto12.jpg" alt="Private N Anurai getting dressed">
+            </div>
+
+            <!-- Foto 13 -->
+            <div>
+                <img src="foto13.jpg" alt="Private N Anurai ready for her mission">
+                <p class="photo-caption">"Shades down. Time to go to work."</p>
+            </div>
+
+            <!-- Foto 14 -->
+            <div>
+                <img src="foto14.jpg" alt="Private N Anurai">
+            </div>
+
+            <!-- Foto 15 -->
+            <div>
+                <img src="foto15.jpg" alt="Private N Anurai guns ready">
+            </div>
+
+            <!-- Foto 16 -->
+            <div>
+                <img src="foto16.jpg" alt="Private N Anurai shooting">
+                <p class="photo-caption">"Yeah, Get some!"</p>
+            </div>
+
+            <!-- Foto 17 -->
+            <div>
+                <img src="foto17.jpg" alt="Private N Anurai shooting some more">
+            </div>
+
+            <!-- Foto 18 -->
+            <div>
+                <img src="foto18.jpg" alt="Private N Anurai">
+            </div>
+
+            <!-- Foto 19 -->
+            <div>
+                <img src="foto19.jpg" alt="Private N Anurai posing in the jungle">
+            </div>
+
+            <!-- Foto 20 -->
+            <div>
+                <img src="foto20.jpg" alt="Private N Anurai posing in the jungle closeup">
+            </div>
+
+            <!-- Foto 21 -->
+            <div>
+                <img src="foto21.jpg" alt="Private N Anurai">
+            </div>
+
+            <!-- Foto 22 -->
+            <div>
+                <img src="foto22.jpg" alt="Private N Anurai">
+            </div>
+
+            <!-- Foto 23 -->
+            <div>
+                <img src="foto23.jpg" alt="Private N Anurai">
+            </div>
+
+            <!-- Foto 24 -->
+            <div>
+                <img src="foto24.jpg" alt="Private N Anurai">
+            </div>
+
+            <!-- Foto 25 -->
+            <div>
+                <img src="foto25.jpg" alt="Private N Anurai sidearm">
+            </div>
+
+            <!-- Foto 26 -->
+            <div>
+                <img src="foto26.jpg" alt="Private N Anurai">
+            </div>
+
+            <!-- Foto 27 -->
+            <div>
+                <img src="foto27.jpg" alt="Private N Anurai">
+            </div>
+
+            <!-- Foto 29 -->
+            <div>
+                <img src="foto28.jpg" alt="Private N Anurai relaxing">
+                <p class="photo-caption">"Mission is a wrap. Time for some R&R"</p>
+            </div>
+
+            <!-- Foto 29 -->
+            <div>
+                <img src="foto29.jpg" alt="Private N Anurai relaxing some more">
+            </div>
+
+            <!-- Foto 30 -->
+            <div>
+                <img src="foto30.jpg" alt="Private N Anurai back at the base">
+            </div>
+            
+            <!-- Foto 31 -->
+            <div>
+                <img src="foto31.jpg" alt="Private N Anurai getting shitfaced">
+                <p class="photo-caption">"Dealing with the mission"</p>
+            </div>
+            
+            <!-- Foto 32 -->
+            <div>
+                <img src="foto32.jpg" alt="Private N Anurai">
+                <p class="photo-caption">"I’m squared away, relax. Just drowning out the static. You want a pour, or are you gonna stand there looking like my CO?"</p>
+            </div>
+            
+            <!-- Foto 33 -->
+            <div>
+                <img src="foto33.jpg" alt="Private N Anurai">
+                <p class="photo-caption">Fully lit up for now... more to come.</p>
+            </div>
+            
+            <!-- Foto 34 -->
+            <div>
+                <img src="foto34.jpg" alt="Private N Anurai">
+                <p class="photo-caption">"Early version, first stringing & test fit"</p>
+            </div>
+            
+            <!-- Foto 35 -->
+            <div>
+                <img src="foto35.jpg" alt="Private N Anurai">
+            </div>
+            
+            <!-- Foto 36 -->
+            <div>
+                <img src="foto36.jpg" alt="Private N Anurai">
+            </div>
+            
+            <!-- Foto 37 -->
+            <div>
+                <img src="foto37.jpg" alt="Private N Anurai">
+            </div>
+            
+            <!-- Foto 38 -->
+            <div>
+                <img src="foto38.jpg" alt="Private N Anurai">
+                <p class="photo-caption">Not in Kansas anymore.</p>
+            </div>
+
+
+        <div class="bottom-nav">
+            <a href="../index.html" class="bottom-back-btn">&larr; Back to main</a>
+        </div>
+
+
+    </main>
+
+    <footer>
+        &copy; 2026 Fierox Foundry.<br><br>
+        <a href="https://instagram.com/fierox88" style="color: var(--accent-color); text-decoration: none;" target="_blank">Instagram</a> 
+        &nbsp; | &nbsp; 
+        <a href="mailto:fierox88@gmail.com" style="color: var(--accent-color); text-decoration: none;">fierox88@gmail.com</a>
+    </footer>
+
+    <!-- Het verborgen Lightbox element -->
+    <div id="lightbox">
+        <img id="lightbox-img" src="" alt="Grote weergave">
+    </div>
+
+    <!-- Het Javascript dat het klik-effect regelt -->
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const photos = document.querySelectorAll('.photo-stack img');
+
+        // Geef elke foto een klik-actie
+        photos.forEach(photo => {
+            photo.addEventListener('click', () => {
+                lightboxImg.src = photo.src; // Kopieer de foto naar de lightbox
+                lightbox.style.display = 'flex'; // Maak de lightbox zichtbaar
+            });
+        });
+
+        // Sluit de lightbox als je erop klikt
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
