@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,8 @@
     <meta name="description" content="Portfolio of Fierox Foundry. Specialised in custom Ball Jointed Dolls (BJD), 3D printing and CG. View finished projects and my current work in progress.">
     <meta property="og:title" content="Fierox Foundry | BJD & CG Artist">
     <meta property="og:description" content="Custom Ball Jointed Dolls, CG and 3D printing. View my portfolio.">
-    <meta property="og:image" content="https://fieroxfoundry.github.io/header-visual-desktop.jpg">
+    <meta property="og:image" content="https://fieroxfoundry.com/header-visual-desktop.jpg">
     <meta property="og:url" content="https://fieroxfoundry.com">
-    <link rel="icon" type="image/png" href="header-visual-desktop">
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         :root {
@@ -19,6 +18,9 @@
             --text-muted: #a0a0a0;
             --accent-color: #d4af37;
             --border-color: #2a2a2a;
+        }
+        html {
+    scroll-behavior: smooth;
         }
         
         * {
@@ -112,7 +114,7 @@
             background-size: cover;
             background-position: center;
             height: 45vh;
-            min-height: 300px;
+            min-height: 200px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -358,6 +360,15 @@
             margin-bottom: 1rem;
         }
 
+        .about-text a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .about-text a:hover {
+            text-decoration: underline;
+        }
+
         /* WORK IN PROGRESS SECTIE (Nieuwe styling: tekst links, grote feature-foto rechts) */
         .wip-section {
             margin-top: 5rem;
@@ -472,6 +483,49 @@
         .lightbox-close:hover {
             color: var(--accent-color); /* Wordt goud als je eroverheen zweeft */
         }
+
+        .lightbox-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(26, 26, 26, 0.7);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            font-size: 2rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            user-select: none;
+            z-index: 10000;
+        }
+
+        .lightbox-btn:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            background-color: rgba(26, 26, 26, 0.95);
+        }
+
+        #lightbox-prev {
+            left: 1.5rem;
+        }
+
+        #lightbox-next {
+            right: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .lightbox-btn {
+                font-size: 1.5rem;
+                padding: 0.4rem 0.75rem;
+            }
+            #lightbox-prev {
+                left: 0.5rem;
+            }
+            #lightbox-next {
+                right: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -507,7 +561,7 @@
                 <img src="project1-cover.jpg" alt="Spider Demon Jorōgumo BJD" class="card-image">
                 <div class="card-content">
                     <h3 class="card-title">The Shadow Weaver</h3>
-                    <p class="card-description">Inspired by Jorōgumo and spider demons worldwide</p>
+                    <p class="card-description">Inspired by Jorōgumo and spider demons worldwide.</p>
                     <a href="project-spiderdemon/index.html" class="btn">See details</a>
                 </div>
             </article>
@@ -517,14 +571,14 @@
                 <img src="project2-cover.jpg" alt="Varang BJD" class="card-image">
                 <div class="card-content">
                     <h3 class="card-title">Varang</h3>
-                    <p class="card-description">A BJD based on the fiery shaman of the Ash Navi</p>
+                    <p class="card-description">A BJD based on the fiery shaman of the Ash tribe.</p>
                     <a href="project-varang/index.html" class="btn">See details</a>
                 </div>
             </article>
 
             <!-- Project 3 -->
             <article class="card">
-                <img src="project3-cover.jpg" alt="Naam van Project 3" class="card-image">
+                <img src="project3-cover.jpg" alt="Night Elves" class="card-image">
                 <div class="card-content">
                     <h3 class="card-title">Night Elves</h3>
                     <p class="card-description">Forge the Kaldorei into reality with various BJD sculpts.</p>
@@ -536,8 +590,8 @@
             <article class="card">
                 <img src="project4-cover.jpg" alt="Dark Spear Troll BJD" class="card-image">
                 <div class="card-content">
-                    <h3 class="card-title">Dark Spear Troll BJD</h3>
-                    <p class="card-description">A Dark Spear Troll BJD, For the Horde!</p>
+                    <h3 class="card-title">Darkspear Troll BJD</h3>
+                    <p class="card-description">A Darkspear Troll BJD, For the Horde!</p>
                     <a href="project-troll/index.html" class="btn">See details</a>
                 </div>
             </article>
@@ -574,7 +628,7 @@
 
             <!-- Project 8 -->
             <article class="card">
-                <img src="project8-cover.jpg" alt="Navi RDA RECOM female BJD" class="card-image">
+                <img src="project8-cover.jpg" alt="Na'vi RDA RECOM female BJD" class="card-image">
                 <div class="card-content">
                     <h3 class="card-title">Private N. Anurai</h3>
                     <p class="card-description">"At ease, jarhead. Not a hostile. You look like you've never seen a blue SecOps before."</p>
@@ -586,7 +640,7 @@
             <article class="card">
                 <img src="project9-cover.jpg" alt="Alien BJD" class="card-image">
                 <div class="card-content">
-                    <h3 class="card-title">Aquatic alien BJD</h3>
+                    <h3 class="card-title">Aquatic Alien BJD</h3>
                     <p class="card-description">Little Xeno BJD</p>
                     <a href="project-alien/index.html" class="btn">See details</a>
                 </div>
@@ -715,7 +769,7 @@
         <section id="about" class="about-me">
             <div class="about-content">
                 <!-- Zorg dat je een foto genaamd profile-pic.jpg uploadt -->
-                <img src="profile-pic.jpg" alt="Portret van de artiest achter Fiero X Foundry" class="about-image">
+                <img src="profile-pic.jpg" alt="My cats Cosmo and Nova" class="about-image">
                 
                 <div class="about-text">
                     <h2>About me</h2>
@@ -743,23 +797,44 @@
 <!-- LIGHTBOX MODAL -->
     <div id="cg-lightbox" class="lightbox-modal">
         <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
+        <button id="lightbox-prev" class="lightbox-btn" aria-label="Previous render">&#10094;</button>
+        <img class="lightbox-content" id="lightbox-img" alt="Enlarged CG render">
+        <button id="lightbox-next" class="lightbox-btn" aria-label="Next render">&#10095;</button>
     </div>
 
 <!-- JavaScript voor de Lightbox -->
-    <script>
+<script>
         const lightbox = document.getElementById('cg-lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
-        const triggers = document.querySelectorAll('.cg-lightbox-trigger');
+        const triggers = Array.from(document.querySelectorAll('.cg-lightbox-trigger'));
         const closeBtn = document.querySelector('.lightbox-close');
+        const prevBtn = document.getElementById('lightbox-prev');
+        const nextBtn = document.getElementById('lightbox-next');
+        let currentIndex = 0;
+
+        function showRender(index) {
+            currentIndex = (index + triggers.length) % triggers.length;
+            lightboxImg.src = triggers[currentIndex].getAttribute('href');
+        }
 
         // Open de lightbox als je op een render klikt
-        triggers.forEach(trigger => {
+        triggers.forEach((trigger, index) => {
             trigger.addEventListener('click', function(e) {
-                e.preventDefault(); // Voorkomt dat de browser naar een andere pagina springt
-                lightboxImg.src = this.getAttribute('href'); // Pakt de grote foto
-                lightbox.classList.add('active'); // Toont het zwarte scherm
+                e.preventDefault();
+                showRender(index);
+                lightbox.classList.add('active');
             });
+        });
+
+        // Vorige / Volgende knoppen
+        prevBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showRender(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showRender(currentIndex + 1);
         });
 
         // Sluit via het kruisje
@@ -771,6 +846,19 @@
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox) {
                 lightbox.classList.remove('active');
+            }
+        });
+
+        // Toetsenbord-navigatie: Escape om te sluiten, pijltjes om te bladeren
+        document.addEventListener('keydown', function(e) {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                } else if (e.key === 'ArrowRight') {
+                    showRender(currentIndex + 1);
+                } else if (e.key === 'ArrowLeft') {
+                    showRender(currentIndex - 1);
+                }
             }
         });
     </script>
